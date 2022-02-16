@@ -77,6 +77,12 @@ function countFlips(array) {
       flips.tails++;
     }
   }
+  if (flips.heads==0) {
+    delete flips.heads;
+  }
+  if (flips.tails==0) {
+    delete flips.tails;
+  }
   return flips;
 }
 
