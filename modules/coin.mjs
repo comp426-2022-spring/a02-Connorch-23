@@ -15,7 +15,12 @@
  */
 
 function coinFlip() {
-
+  let chance = Math.random();
+  if (chance >= .5) {
+    return "heads";
+  } else {
+    return "tails";
+  }
 }
 
 /** Multiple coin flips
@@ -38,7 +43,16 @@ function coinFlip() {
  */
 
 function coinFlips(flips) {
+  const record = [];
 
+  if (flips == undefined) {
+    flips = 1;
+  }
+  
+  for (let i = 0; i < flips; i++) {
+      record[i] = coinFlip();
+  }
+  return record;
 }
 
 /** Count multiple flips
@@ -55,7 +69,15 @@ function coinFlips(flips) {
  */
 
 function countFlips(array) {
-
+  let flips = {heads: 0, tails: 0};
+  for (let i=0; i < array.length;i++) {
+    if (array[i].localeCompare("heads")==0) {
+      flips.heads++;
+    } else {
+      flips.tails++;
+    }
+  }
+  return flips;
 }
 
 /** Flip a coin!
@@ -70,10 +92,24 @@ function countFlips(array) {
  */
 
 function flipACoin(call) {
+ let game;
+  if (call == undefined) {
+    console.log("Error: no input.");
+    console.log("Usage: node guess-flip --call=[heads|tails]");
+  } else if (!call.localeCompare("heads") || !call.localeCompare("tails")) {
+    game = {call:call, flip:coinFlip(), result:'lose'}
+    if (game.call.localeCompare(game.flip) == 0) {
+      game.result = "win"
+    }
+  } else {
+    console.log("Error: Invalid input");
+    console.log("Usage: node guess-flip --call=[heads|tails]");
+  }
 
+  return game;
 }
 
-
+export {coinFlip, coinFlips, countFlips, flipACoin};
 /** Export 
  * 
  * Export all of your named functions
