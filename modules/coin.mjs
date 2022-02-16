@@ -46,7 +46,7 @@ function coinFlips(flips) {
   const record = [];
 
   if (flips == undefined) {
-    flips = 200;
+    flips = 1;
   }
   
   for (let i = 0; i < flips; i++) {
